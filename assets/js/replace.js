@@ -117,9 +117,29 @@
 		 * Render left side bar
 		 */
 		renderLeftSide: function(container, threads) {
+			var $favoriteContainer = $('<ul/>', {'id': 'leftSideFavorite', 'class': 'roomCategory'}).append($('<h6/>', {'class': 'categoryTitle'}).text("favorites")),
+				$recentContainer = $('<ul/>', {'id': 'leftSideRecent', 'class': 'roomCategory'}).append($('<h6/>', {'class': 'categoryTitle'}).text("recent")),
+				$olderContainer = $('<ul/>', {'id': 'leftSideOlder', 'class': 'roomCategory'}).append($('<h6/>', {'class': 'olderTitle'}).text("older...")),
+				ind = 0;
+
 			for (var i = 0; i < threads.length; i++) {
-				var curThread = threads[i];
+				var curThread = threads[i],
+					$li = $('<li/>', {'class': 'item'}),
+					$tag = $('<span/>', {'class': 'mark'}),
+					$title = $('<h6/>', {'class': 'title'});
+
+				$li.append($tag, $title.text(curThread.subject.threeDots(30)));
+
+				if(i < 3) {
+					$favoriteContainer.append($li);
+				}else if (i < 7) {
+					$recentContainer.append($li);
+				}else {
+					$olderContainer.append($li);
+				}
 			}
+
+			container.append($favoriteContainer, $recentContainer, $olderContainer);
 		},
 
 		/**

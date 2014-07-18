@@ -30,7 +30,10 @@
       "assets/bootstrap/js/bootstrap.min.js",
 
       "assets/css/odesk.css",
-      "assets/bootstrap/css/bootstrap.min.css"
+      "assets/css/message-style.css",
+      "assets/bootstrap/css/bootstrap.min.css",
+
+      "https://www.odesk.com/*"
   ],
 	"permissions": [
     "http://www.odesk.com/"

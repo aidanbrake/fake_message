@@ -1,0 +1,190 @@
+{
+   "server_time":1405580823,
+   "auth_user":{
+      "first_name":"Aidan",
+      "last_name":"Brake",
+      "timezone":"Pacific\/Auckland",
+      "timezone_offset":"43200"
+   },
+   "thread":{
+      "do_not_reply":"0",
+      "subject":"Offer: UI Prototyper",
+      "created_ts":"1405540400",
+      "participants":[
+         {
+            "ciphertext":"~01595b415c95bdd5dc",
+            "has_muted":"0",
+            "last_post_id":"404031681",
+            "last_post_ts":"1405549030",
+            "last_name":"Kayan",
+            "username":"shipra",
+            "id":"561135",
+            "is_bcc":"0",
+            "first_name":"Shipra"
+         },
+         {
+            "ciphertext":"~01b6c8ee2ad902774b",
+            "has_muted":"0",
+            "last_post_id":"404044302",
+            "last_post_ts":"1405553692",
+            "last_name":"Brake",
+            "username":"da89f92c",
+            "id":"5957501",
+            "is_bcc":"0",
+            "first_name":"Aidan"
+         }
+      ],
+      "tray_item":{
+         "starred":"0",
+         "deleted":"0",
+         "last_accessed_ts":"1405570793",
+         "last_accessed_post_id":"404044302",
+         "read":"1"
+      },
+      "sender":"shipra",
+      "context":"OfferWorkflow:1043369:275112861",
+      "id":"323624279",
+      "posts":[
+         {
+            "created_ts":"1405540400",
+            "attachments":"",
+            "preview":"Hi Please review and accept my offer. Shipra Kayan OFFER DETAILS Client: Shipra Kayan (oDesk) Freela",
+            "content":"Hi\n\nPlease review and accept my offer.\n\nShipra Kayan\n\nOFFER DETAILS\n\nClient: Shipra Kayan (oDesk)\nFreelancer: Aidan Brake \nJob Posting: UI Prototyper\nContract Title: UI Prototyper\nHourly Rate: $29.99\/hr ($26.99 paid to freelancer)\nWeekly Limit: 20 hours \/ week\n\n[[https:\/\/www.odesk.com\/offer\/1043369|View Offer]]\nThis offer will expire on Wednesday, July 23, 2014. Accept this offer to start working!",
+            "id":"403992170",
+            "sender_username":"shipra"
+         },
+         {
+            "created_ts":"1405540854",
+            "attachments":[
+               {
+                  "filesize":"135020",
+                  "filename":"odesk.css",
+                  "acl":"any",
+                  "url":"https:\/\/odesk-prod-att.s3.amazonaws.com\/MC:403993815:1?AWSAccessKeyId=1XVAX3FNQZAFC9GJCFR2&Expires=2147483647&Signature=7LeYxtR%2FgKX%2FrcTKUKk3KV1UETU%3D&response-content-disposition=attachment%3B%20filename*%3DUTF-8''odesk.css"
+               }
+            ],
+            "preview":"Hi Aidan I need 2 things: #1 - This should be easy for you. I need a Chrome Extension that replaces ",
+            "content":"Hi Aidan\n\nI need 2 things:\n\n#1 - This should be easy for you. I need a Chrome Extension that replaces the CSS for a page built in bootstrap to this oDesk-y bootstrap CSS. \n\n#2 - I need you to prototype a page for me in bootstrap, while applying the above theme. We (at odesk) are working on some ideas for the messages section for the site - making it more like skype or slack. (This is all confidential of-course) - I have some initial ideas - and I want a quick prototype to be able to usability test some of the ideas. \n\nI need a page: \n- with a fake oDesk navigation, selected to \"Messages\" tab\n- make some of the menus work, not everything needs to work\n- wireframe: https:\/\/www.evernote.com\/shard\/s251\/sh\/376e34eb-50f5-449e-95c7-a9d8483e793d\/e19bd99254b23d2b838cca68d89b3fff \n- more updated ideas: https:\/\/www.evernote.com\/shard\/s251\/sh\/70c97fe2-a47a-4e6e-9b7b-a9aa9ff03bd0\/db028ce1cb8e3eeb00d55f25f91aa64c\n- https:\/\/www.evernote.com\/shard\/s251\/sh\/6a25e77c-7fc8-48fb-82b4-fb8cbc0b82db\/327b0343b7e6e52872cb9404c00a0355\n\nFeel free to play with it - I am mostly sending you wireframes. I am looking for prototypes where not everything works. I expect that we will start with something very static, and iterate on it a LOT, and add some interactions as we refine it. \n\nLet me know if anything needs more explanation. Looking for task #1 first. \n\nShipra\n\n",
+            "id":"403993815",
+            "sender_username":"shipra"
+         },
+         {
+            "created_ts":"1405541135",
+            "attachments":"",
+            "preview":"Thank you so much. Aidan Aidan Brake accepted this offer. [[https:\/\/www.odesk.com\/assignments\/142460",
+            "content":"Thank you so much.\n\nAidan\n\nAidan Brake accepted this offer. [[https:\/\/www.odesk.com\/assignments\/14246064\/?teamReference=872046|View contract]].",
+            "id":"403994974",
+            "sender_username":"da89f92c"
+         },
+         {
+            "created_ts":"1405545986",
+            "attachments":"",
+            "preview":"Of course - looking forward to working with you. Let me know tentatively when I should expect the ch",
+            "content":"Of course - looking forward to working with you. \n\nLet me know tentatively when I should expect the chrome extension, and if you have any questions. \n\nShipra",
+            "id":"404013328",
+            "sender_username":"shipra"
+         },
+         {
+            "created_ts":"1405547839",
+            "attachments":"",
+            "preview":"Hi Shipra, I started working on the #1. I think I am able to deliver the first chrome extension toda",
+            "content":"Hi Shipra,\n\nI started working on the #1.\nI think I am able to deliver the first chrome extension today.\nBefore that I need to make sure.\nReplacing the CSS for a page built in bootstrap to this oDesk-y bootstrap CSS?\nI see that 3 css files were added in odesk message page.\nglobals.css\nmessage-center.css\nindex.css\nWhich css files should be replaced with odesk.css that you attached?\n\nThank you,\n\nAidan",
+            "id":"404027422",
+            "sender_username":"da89f92c"
+         },
+         {
+            "created_ts":"1405549030",
+            "attachments":"",
+            "preview":"Hmn... for now you can make it so it replaces globals.css - and I can change it to the right name on",
+            "content":"Hmn... for now you can make it so it replaces globals.css - and I can change it to the right name once I have the extension - depending on the prototype page.\n\nCould you also send me instructions on how to edit the chrome extension?\n\nThanks\n\n\n",
+            "id":"404031681",
+            "sender_username":"shipra"
+         },
+         {
+            "created_ts":"1405552126",
+            "attachments":"",
+            "preview":"Hi Shipra, Ok, I understand and will send you an instruction file. Thanks",
+            "content":"Hi Shipra,\n\nOk, I understand and will send you an instruction file.\n\nThanks",
+            "id":"404040045",
+            "sender_username":"da89f92c"
+         },
+         {
+            "created_ts":"1405553457",
+            "attachments":[
+               {
+                  "filesize":"113883",
+                  "filename":"replace.zip",
+                  "acl":"any",
+                  "url":"https:\/\/odesk-prod-att.s3.amazonaws.com\/MC:404043641:1?AWSAccessKeyId=1XVAX3FNQZAFC9GJCFR2&Expires=2147483647&Signature=nvRSqNPtvvtR7s7MvAcmsDTG0dg%3D&response-content-disposition=attachment%3B%20filename*%3DUTF-8''replace.zip"
+               }
+            ],
+            "preview":"Hello Shipra, This is the extension to replace some css files with yours. I hope you would like to l",
+            "content":"Hello Shipra,\n\nThis is the extension to replace some css files with yours.\nI hope you would like to let me know your feedback.\n\nThanks",
+            "id":"404043641",
+            "sender_username":"da89f92c"
+         },
+         {
+            "created_ts":"1405553692",
+            "attachments":[
+               {
+                  "filesize":"289",
+                  "filename":"ReadMe.txt",
+                  "acl":"any",
+                  "url":"https:\/\/odesk-prod-att.s3.amazonaws.com\/MC:404044302:1?AWSAccessKeyId=1XVAX3FNQZAFC9GJCFR2&Expires=2147483647&Signature=QPxIsmGio2ybn%2BxUfooAwqFNILs%3D&response-content-disposition=attachment%3B%20filename*%3DUTF-8''ReadMe.txt"
+               }
+            ],
+            "preview":"It's the instruction file. I hope all clear. And do you have any question?",
+            "content":"It's the instruction file.\nI hope all clear. And do you have any question?",
+            "id":"404044302",
+            "sender_username":"da89f92c"
+         }
+      ],
+      "type":"conversation",
+      "posts_count":"9",
+      "can_reply":"1"
+   },
+   "trays":{
+      "archive":{
+         "unread":"0",
+         "type":"archive",
+         "id":"32246630",
+         "company":null,
+         "tray_api":"\/api\/mc\/v2\/trays\/da89f92c\/archive.json"
+      },
+      "notifications":{
+         "unread":"0",
+         "type":"notifications",
+         "id":"32246633",
+         "company":null,
+         "tray_api":"\/api\/mc\/v2\/trays\/da89f92c\/notifications.json"
+      },
+      "sent":{
+         "unread":"0",
+         "type":"sent",
+         "id":"32246634",
+         "company":null,
+         "tray_api":"\/api\/mc\/v2\/trays\/da89f92c\/sent.json"
+      },
+      "inbox":{
+         "unread":"0",
+         "type":"inbox",
+         "id":"32246632",
+         "company":null,
+         "tray_api":"\/api\/mc\/v2\/trays\/da89f92c\/inbox.json"
+      },
+      "disputes":{
+         "unread":"0",
+         "type":"disputes",
+         "id":"32246631",
+         "company":null,
+         "tray_api":"\/api\/mc\/v2\/trays\/da89f92c\/disputes.json"
+      },
+      "tickets":{
+         "unread":0,
+         "type":"tickets",
+         "id":"32246635",
+         "company":null,
+         "tray_api":"\/api\/mc\/v2\/trays\/da89f92c\/tickets.json"
+      }
+   }
+}

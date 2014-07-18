@@ -1,12 +1,14 @@
 (function(window, $) {
+
 	$(document).ready(function() {
 
 		var param = {
-			"from": ["message-center.css"],
-			"to": ["assets/css/odesk.css"]
+			"from": [],//"message-center.css"],
+			"to": ["assets/css/odesk.css", "assets/css/message-style.css"]
 		};
 
-		var replace = window.Replace;
+		var replace = window.Replace.init();
+		// replace.init();
 
 		/**
 		 * You can test here.

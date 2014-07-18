@@ -5,6 +5,11 @@
  */
 
 /**
+ * Parameters
+ */
+var _messageAjaxUri = "https://www.odesk.com/api/mc/v2/trays/da89f92c/inbox.json";
+
+/**
  * function to get file name from link
  * @params full path name
  */

@@ -1,0 +1,32 @@
+header.oSearchInTopNav {
+	margin-bottom: 2px;}
+
+.oPageCentered ul.oNavTablist {
+	margin-bottom: 0;
+}
+
+div.oFakeMessageLeftSideBar {
+	float: left;
+	width: 25%;}
+	div.oFakeMessageLeftSideBar div.leftTopBar {
+		height: 45px;
+		background: #f0f1ec;
+		border-bottom: solid 2px #e6e6e4;}
+		div.oFakeMessageLeftSideBar div.leftTopBar h6{
+			font-size: 16px;
+			color: #727b76;
+			padding-top: 13px;
+			padding-left: 15px;}
+		div.oFakeMessageLeftSideBar div.leftTopBar span {
+			
+		}
+
+
+div.oFakeMessageContent {
+	border: solid 2px #e0e0e0;
+	border-top: none;
+	border-radius: 3px;
+	float: left;
+	width: 75%;
+	/*padding-top: 10px;*/
+}

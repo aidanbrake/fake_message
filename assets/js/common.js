@@ -60,3 +60,22 @@ function addStyleInfo(files) {
 		head.appendChild(link);
 	}
 }
+
+
+/**
+ * Getting substring with three dots - "..."
+ */
+String.prototype.threeDots = function (len){
+	var len = 10,
+	str = this.valueOf();
+	if (len == undefined) 
+		return str + "...";
+	else if (len < 1) 
+		return str;
+	else {
+		if (str.length > len) 
+			return str.substr(0, len) + "...";
+		else 
+			return str;
+	}
+}

@@ -128,7 +128,7 @@
 					$tag = $('<span/>', {'class': 'mark'}),
 					$title = $('<h6/>', {'class': 'title'});
 
-				$li.append($tag, $title.text(curThread.subject.threeDots(30)));
+				$li.append($tag, $title.text(curThread.subject.threeDots(22)));
 
 				if(i < 3) {
 					$favoriteContainer.append($li);

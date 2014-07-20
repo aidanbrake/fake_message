@@ -65,7 +65,7 @@ function addStyleInfo(files) {
 /**
  * Getting substring with three dots - "..."
  */
-String.prototype.threeDots = function (len){
+String.prototype.threeDots = function (length){
 	var len = 10,
 	str = this.valueOf();
 	if (len == undefined) 
@@ -73,6 +73,7 @@ String.prototype.threeDots = function (len){
 	else if (len < 1) 
 		return str;
 	else {
+		len = length;
 		if (str.length > len) 
 			return str.substr(0, len) + "...";
 		else 

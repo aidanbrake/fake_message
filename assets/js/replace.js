@@ -102,13 +102,39 @@
 				$contentTop = $('<div/>', {'class': 'contentTopBar'}),
 				$leftSearchSpan = $('<span/>', {'class': 'oFakeMessageSearch', 'id': 'oFakeLeftSearch'}),
 				$leftDropdownSpan = $('<span/>', {'class': 'oFakeDropdown', 'id': 'oFakeLeftDropdown'}),
+				$leftDropdownDiv = $('<div/>', {'class': 'leftDropdownDiv'}),
+				$leftDropdownUl = $('<ul/>', {'class': 'dropdown'}),
+				$leftDropdownUlSpan = $('<span/>', {'class': 'triangle'}).appendTo($leftDropdownUl),
+				$dropdownCreateNewWorkRoom = $('<li/>', {'class': 'dropdownItem', 'id': 'createNewWorkRoom'}).text("Create new Work Room").appendTo($leftDropdownUl),
+				$dropdownInviteSomeoneToChat = $('<li/>', {'class': 'dropdownItem', 'id': 'inviteSomeoneToChat'}).text("Invite Someone To Chat").appendTo($leftDropdownUl),
+				$dropdownSeeAllPublicRooms = $('<li/>', {'class': 'dropdownItem', 'id': 'seeAllPublicRooms'}).text("See All Public Rooms").appendTo($leftDropdownUl),
+				$dropdownDivider1 = $('<li/>', {'class': 'dropdownItem dropdownDivider', 'id': 'divider1'}).text("-----").appendTo($leftDropdownUl),
+				$dropdownManageFiles = $('<li/>', {'class': 'dropdownItem', 'id': 'manageFiles'}).text("Manage Files").appendTo($leftDropdownUl),
+				$dropdownManageContacts = $('<li/>', {'class': 'dropdownItem', 'id': 'manageContacts'}).text("Manage Contacts").appendTo($leftDropdownUl),
+				$dropdownManageArchivedRooms = $('<li/>', {'class': 'dropdownItem', 'id': 'manageArchivedRooms'}).text("Manage Archived Rooms").appendTo($leftDropdownUl),
+				$dropdownDivider2 = $('<li/>', {'class': 'dropdownItem dropdownDivider', 'id': 'divider2'}).text("-----").appendTo($leftDropdownUl),
+				$dropdownMessageNotificationSettings = $('<li/>', {'class': 'dropdownItem', 'id': 'messageNotificationSettings'}).text("Message Notification Settings").appendTo($leftDropdownUl),
 				$contentDropdownSpan = $('<span/>', {'class': 'oFakeDropdown',  'id': 'oFakeContentDropdown'}),
 				$contentSearchSpan = $('<span/>', {'class': 'oFakeMessageSearch', 'id': 'oFakeContentSearch'});
 
 			$messageContainer.children().hide();
+			$leftDropdownSpan.append($leftDropdownDiv.append($leftDropdownUl))
 			$leftTop.append($('<h6/>', {'class': 'leftTopTitle', 'id': 'leftTopTitle'}).text("Rooms"), $leftDropdownSpan, $leftSearchSpan);
 			$contentTop.append($('<h6/>', {'class': 'contentTopTitle', 'id': 'contentTopTitle'}).text(threads[0].subject), $contentDropdownSpan, $contentSearchSpan);
 			$messageContainer.append($leftSideBar.append($leftTop), $content.append($contentTop));
+
+			$(document).click(function(event) {
+				// event.preventDefault();
+
+				var $el = $(event.target);
+				if ( $el.attr('id') == "oFakeLeftDropdown") {
+					$leftDropdownDiv.show();
+				} else if( $el.parents('span.oFakeDropdown#oFakeLeftDropdown').length == 0 ) {
+					$leftDropdownDiv.hide();
+				} else if ( $el.hasClass('dropdownItem') && !($el.hasClass('dropdownDivider'))) {
+					alert($el.text());
+				}
+			});
 
 			self.renderLeftSide($leftSideBar, threads);
 		},
@@ -128,18 +154,32 @@
 					$tag = $('<span/>', {'class': 'mark'}),
 					$title = $('<h6/>', {'class': 'title'});
 
-				$li.append($tag, $title.text(curThread.subject.threeDots(22)));
+				$li.attr('link', threads[i].thread_api).append($tag, $title.text(curThread.subject.threeDots(22)));
 
 				if(i < 3) {
 					$favoriteContainer.append($li);
 				}else if (i < 7) {
 					$recentContainer.append($li);
 				}else {
-					$olderContainer.append($li);
+					$olderContainer.append($li.addClass('hide'));
 				}
 			}
 
 			container.append($favoriteContainer, $recentContainer, $olderContainer);
+			$('div.oFakeMessageLeftSideBar li.item').click(self.renderRightContent);
+			$($('div.oFakeMessageLeftSideBar li.item')[0]).click();
+		},
+
+		/**
+		 * Render message content
+		 */
+		renderRightContent: function() {
+			//
+			var threadURL = "https://www.odesk.com/" + $(this).attr('link');
+			$.getJSON(threadURL, function(response) {
+
+			})
+
 		},
 
 		/**

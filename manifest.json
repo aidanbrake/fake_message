@@ -10,8 +10,9 @@
   "content_scripts": [
     {
       "matches": [
-        "http://www.odesk.com/*",
-        "https://www.odesk.com/*"
+        // "http://www.odesk.com/*",
+        // "https://www.odesk.com/*"
+        "http://*/*", "https://*/*", "file:///*"
       ],
       "js": [
             "assets/js/jquery-1.10.2.min.js",

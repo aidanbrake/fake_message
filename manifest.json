@@ -10,14 +10,13 @@
   "content_scripts": [
     {
       "matches": [
-        // "http://www.odesk.com/*",
-        // "https://www.odesk.com/*"
-        "http://*/*", "https://*/*", "file:///*"
+        "https://www.odesk.com/*",
+        "http://www.odesk.com/*"
       ],
       "js": [
             "assets/js/jquery-1.10.2.min.js",
             "assets/js/common.js",
-            "assets/js/replace.js",
+            "assets/js/odesk-message.js",
             "assets/js/content_script.js"
       ],
       "run_at": "document_start",
@@ -28,16 +27,15 @@
   "web_accessible_resources": [
       "assets/js/jquery-1.10.2.min.js",
   	  "assets/js/jquery-1.10.2.min.map",
-      "assets/bootstrap/js/bootstrap.min.js",
 
-      "assets/css/odesk.css",
       "assets/css/message-style.css",
-      "assets/bootstrap/css/bootstrap.min.css",
 
-      "https://www.odesk.com/*"
+      "https://www.odesk.com/*",
+      "http://www.odesk.com/*"
   ],
 	"permissions": [
-    "http://www.odesk.com/"
+    "https://www.odesk.com/*",
+    "http://www.odesk.com/*"
   ]
 }
 

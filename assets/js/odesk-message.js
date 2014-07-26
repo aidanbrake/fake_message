@@ -158,7 +158,8 @@
 				$content = $('<div/>', {'class': 'oFakeMessageContent'}),
 				$leftTop = $('<div/>', {'class': 'leftTopBar'}),
 				$contentTop = $('<div/>', {'class': 'contentTopBar'}),
-				$leftSearchSpan = $('<span/>', {'class': 'oFakeMessageSearch', 'id': 'oFakeLeftSearch'}),
+				$leftSearchSpan = $('<span/>', {'class': 'oFakeMessageSearchSpan', 'id': 'oFakeLeftSearch'})
+					.append($('<input id="titleSearchBox" class="searchBox" placeholder="Subject" /><span id="titleSearchBoxIcon"  class="searchBoxIcon"></span>')),
 				$leftDropdownSpan = $('<span/>', {'class': 'oFakeDropdown', 'id': 'oFakeLeftDropdown'}),
 				$leftDropdownDiv = $('<div/>', {'class': 'leftDropdownDiv'}),
 				$leftDropdownUl = $('<ul/>', {'class': 'dropdown'}),
@@ -173,7 +174,8 @@
 				$dropdownDivider2 = $('<li/>', {'class': 'dropdownItem dropdownDivider', 'id': 'divider2'}).text("-----").appendTo($leftDropdownUl),
 				$dropdownMessageNotificationSettings = $('<li/>', {'class': 'dropdownItem', 'id': 'messageNotificationSettings'}).text("Message Notification Settings").appendTo($leftDropdownUl),
 				$contentDropdownSpan = $('<span/>', {'class': 'oFakeDropdown',  'id': 'oFakeContentDropdown'}),
-				$contentSearchSpan = $('<span/>', {'class': 'oFakeMessageSearch', 'id': 'oFakeContentSearch'});
+				$contentSearchSpan = $('<span/>', {'class': 'oFakeMessageSearchSpan', 'id': 'oFakeContentSearch'})
+					.append($('<input id="contentSearchBox" class="searchBox" placeholder="Keyword" /><span id="contentSearchBoxIcon"  class="searchBoxIcon"></span>'));
 
 			$messageContainer.children().hide();
 			$leftDropdownSpan.append($leftDropdownDiv.append($leftDropdownUl))

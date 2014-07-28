@@ -23,7 +23,7 @@ span.oFakeMessageSearchSpan {
 		border-radius: 7px;
 		border: solid 2px #D2D2CD;
 		outline: 0;
-		padding: 0 5px;
+		padding: 0 25px 0 5px;
 		font-size: 15px;
 		color: #545454;
 		-webkit-transition: all 1s ease;
@@ -156,7 +156,10 @@ div.oFakeMessageLeftSideBar {
 			margin: 0;
 			padding: 5px 2px 5px 10px;
 			border-bottom: solid 2px #f0f0f0;}
+			ul.roomCategory li.item.dismatch {
+				display: none;}
 			ul.roomCategory li.item.active {
+				display: block;
 				color: #fff;
 				background: #00AEEC;}
 				ul.roomCategory li.item.active div.titleContainer {}
@@ -241,6 +244,8 @@ div.oFakeMessageContent {
 				cursor: pointer;				
 				background-repeat: no-repeat;
 				background-position: center;}
+				div.oFakeMessageContent div.contentTopBar span#oFakeContentSearch  input#contentSearchBox:focus {
+					width: 300px;}
 	div.oFakeMessageContent > div.contentBody {
 		padding-left: 0;}
 		div.oFakeMessageContent > div.contentBody > div.posts {}
@@ -280,8 +285,8 @@ div.oFakeMessageContent {
 					float: left;
 					padding-top: 35px;}
 					div.oFakeMessageContent > div.contentBody > div.posts > article.post > span.photo > img {
-						border: solid 4px #00AEEC;
-						border-radius: 50%;
+						/*border: solid 4px #00AEEC;
+						border-radius: 50%;*/
 						width: 50px;
 						height: 50px;}
 				div.oFakeMessageContent > div.contentBody > div.posts > article.post > div.messageContainer {

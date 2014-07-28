@@ -1,45 +1,12 @@
 (function(window) {
 	'use strict';
 
-	var scrollTimer = null;
+	var scrollTimer = null,
+		titleSearchBoxTimer = null,
+		contentSearchBoxTimer = null;
 
 
-	/**
-	 * Handler of scroll
-	 */
-	var scrollHandler = function() {
-		scrollTimer = null;
-		var headerBottom = 111,
-			$leftSideBar = $('div.oFakeMessageLeftSideBar'),
-			scrollTop = $(window).scrollTop(),
-			leftSideBarMarginTop = 0,
-			verticalBound = Math.max($('body').height() - $('header').height() - 10,
-									$('div.oFakeMessageContent').height(),
-									$('div.oFakeMessageLeftSideBar').height());
-
-		if ( scrollTop > headerBottom )
-		{
-			leftSideBarMarginTop = scrollTop - headerBottom;
-			var curStrMarginTop = $leftSideBar.css('margin-top');
-			var curMarginTop = parseInt(curStrMarginTop.substring(0, curStrMarginTop.length - 2));
-
-			if (curMarginTop > leftSideBarMarginTop) {
-				$leftSideBar.animate({marginTop:"-=" + (curMarginTop - leftSideBarMarginTop) + "px"});
-			}
-			else {
-				if (leftSideBarMarginTop + $leftSideBar.height() > verticalBound ) {
-					leftSideBarMarginTop = verticalBound - $leftSideBar.height();
-					$leftSideBar.animate({marginTop:"+=" + (leftSideBarMarginTop - curMarginTop) + "px"});
-				} else {
-					$leftSideBar.animate({marginTop:"+=" + (leftSideBarMarginTop - curMarginTop) + "px"});
-				}
-			}
-			
-		} else {
-			$leftSideBar.css('margin-top', '0');
-		}
-	};
-
+	
 
 	/**
 	 * CSS replacing class
@@ -55,9 +22,17 @@
 		this._host = "https://www.odesk.com/";
 		this._messagesAjaxPath = "api/mc/v2/trays/";
 		this._messageBoxFileName = "/inbox.json";
+		this._contactFullParam = "participant_details=full";
+		this._context = "context=d5025805";
 		this._messages = null;
 		this._cssFiles = ["assets/css/message-style.css"];
 		this._username = this.getUsername();
+
+		this._contactsURL = "https://www.odesk.com/api/ab/v1/contacts.json?order=freq&page=0%3B500";
+		this._contacts = {};
+		this._photoURL = $('div#simpleCompanySelector ul.oDropdownList li a.isCurrent img.oCompanyLogoTiny').attr('src');
+		this._profile = {};
+
 
 	};
 
@@ -72,6 +47,10 @@
 		init: function() {
 			this.addFakeMessageNav();
 			this._username = this.getUsername();
+			this._profile = {
+				username: this._username,
+				portrait_url: this._photoURL
+			};
 			this.addStyleInfo(this._cssFiles);
 			this.addScripts(this._scriptFiles);
 			return this;
@@ -143,9 +122,16 @@
 			$('nav.oNavInline ul.oNavTablist a.oNavTab.isCurrent').removeClass('isCurrent');
 			$('nav.oNavInline ul.oNavTablist li#oNavFakeNavItem a').addClass('isCurrent');
 
-			var address = self._host + self._messagesAjaxPath + self._username + self._messageBoxFileName;
+			var address = self._host + self._messagesAjaxPath + self._username + self._messageBoxFileName + "?" + self._contactFullParam + "&" + self._context;
 
 			$.getJSON(address, self.renderSection);
+			$.getJSON(self._contactsURL, function(data) {
+				self._contacts[self._profile.username] = self._profile;
+				var contacts = data.contacts.contact;
+				for ( var i = 0; i < contacts.length; i++ ) {
+					self._contacts[contacts[i].username] = contacts[i];
+				}
+			});
 		},
 
 		/**
@@ -167,11 +153,11 @@
 				$dropdownCreateNewWorkRoom = $('<li/>', {'class': 'dropdownItem', 'id': 'createNewWorkRoom'}).text("Create new Work Room").appendTo($leftDropdownUl),
 				$dropdownInviteSomeoneToChat = $('<li/>', {'class': 'dropdownItem', 'id': 'inviteSomeoneToChat'}).text("Invite Someone To Chat").appendTo($leftDropdownUl),
 				$dropdownSeeAllPublicRooms = $('<li/>', {'class': 'dropdownItem', 'id': 'seeAllPublicRooms'}).text("See All Public Rooms").appendTo($leftDropdownUl),
-				$dropdownDivider1 = $('<li/>', {'class': 'dropdownItem dropdownDivider', 'id': 'divider1'}).text("-----").appendTo($leftDropdownUl),
+				$dropdownDivider1 = $('<li/>', {'class': 'dropdownDivider', 'id': 'divider1'}).text("-----").appendTo($leftDropdownUl),
 				$dropdownManageFiles = $('<li/>', {'class': 'dropdownItem', 'id': 'manageFiles'}).text("Manage Files").appendTo($leftDropdownUl),
 				$dropdownManageContacts = $('<li/>', {'class': 'dropdownItem', 'id': 'manageContacts'}).text("Manage Contacts").appendTo($leftDropdownUl),
 				$dropdownManageArchivedRooms = $('<li/>', {'class': 'dropdownItem', 'id': 'manageArchivedRooms'}).text("Manage Archived Rooms").appendTo($leftDropdownUl),
-				$dropdownDivider2 = $('<li/>', {'class': 'dropdownItem dropdownDivider', 'id': 'divider2'}).text("-----").appendTo($leftDropdownUl),
+				$dropdownDivider2 = $('<li/>', {'class': 'dropdownDivider', 'id': 'divider2'}).text("-----").appendTo($leftDropdownUl),
 				$dropdownMessageNotificationSettings = $('<li/>', {'class': 'dropdownItem', 'id': 'messageNotificationSettings'}).text("Message Notification Settings").appendTo($leftDropdownUl),
 				$contentDropdownSpan = $('<span/>', {'class': 'oFakeDropdown',  'id': 'oFakeContentDropdown'}),
 				$contentSearchSpan = $('<span/>', {'class': 'oFakeMessageSearchSpan', 'id': 'oFakeContentSearch'})
@@ -239,8 +225,10 @@
 				$(this).toggleClass('hidden-container');
 				$('ul#leftSideOlder li.item').toggleClass('hide');
 				self.correctMessageContentSize();
-				scrollHandler();
+				self.scrollHandler();
 			});
+
+			self.searhBoxChangeEventInit();
 		},
 
 		correctMessageContentSize: function() {
@@ -249,6 +237,42 @@
 										$('div.oFakeMessageContent').height(),
 										$('div.oFakeMessageLeftSideBar').height());
 			$('div.oFakeMessageContent').css('min-height', "" + verticalBound + "px");
+		},
+
+		/**
+		 * Handler of scroll
+		 */
+		scrollHandler: function() {
+			scrollTimer = null;
+			var headerBottom = 111,
+				$leftSideBar = $('div.oFakeMessageLeftSideBar'),
+				scrollTop = $(window).scrollTop(),
+				leftSideBarMarginTop = 0,
+				verticalBound = Math.max($('body').height() - $('header').height() - 10,
+										$('div.oFakeMessageContent').height(),
+										$('div.oFakeMessageLeftSideBar').height());
+
+			if ( scrollTop > headerBottom )
+			{
+				leftSideBarMarginTop = scrollTop - headerBottom;
+				var curStrMarginTop = $leftSideBar.css('margin-top');
+				var curMarginTop = parseInt(curStrMarginTop.substring(0, curStrMarginTop.length - 2));
+
+				if (curMarginTop > leftSideBarMarginTop) {
+					$leftSideBar.animate({marginTop:"-=" + (curMarginTop - leftSideBarMarginTop) + "px"});
+				}
+				else {
+					if (leftSideBarMarginTop + $leftSideBar.height() > verticalBound ) {
+						leftSideBarMarginTop = verticalBound - $leftSideBar.height();
+						$leftSideBar.animate({marginTop:"+=" + (leftSideBarMarginTop - curMarginTop) + "px"});
+					} else {
+						$leftSideBar.animate({marginTop:"+=" + (leftSideBarMarginTop - curMarginTop) + "px"});
+					}
+				}
+				
+			} else {
+				$leftSideBar.css('margin-top', '0');
+			}
 		},
 
 		/**
@@ -262,7 +286,73 @@
 				if (scrollTimer)
 					clearTimeout(scrollTimer);
 
-				scrollTimer = setTimeout(scrollHandler, 500);
+				scrollTimer = setTimeout(self.scrollHandler, 500);
+			});
+		},
+
+
+		/**
+		 *
+		 */
+		titleSearchBoxHander: function() {
+			var $obj = $('span.oFakeMessageSearchSpan input.searchBox#titleSearchBox'),
+				keyword = $obj.val(),
+				$subjects = $('ul.roomCategory li.item');
+
+			if (keyword == "")
+			{
+				$subjects.removeClass('dismatch');
+			} else {
+				for (var i = 0; i < $subjects.length; i++) {
+					var $item = $($subjects[i]);
+					if ( $item.find('.title').text().toLowerCase().indexOf(keyword.toLowerCase()) == -1 )
+						$item.addClass('dismatch');
+					else
+						$item.removeClass('dismatch');
+				}
+			}
+		},
+
+
+		/**
+		 *
+		 */
+		contentSearchBoxHander: function() {
+			var $obj = $('span.oFakeMessageSearchSpan input.searchBox#contentSearchBox'),
+				keyword = $obj.val(),
+				$articles = $('div.contentBody div.posts article.post');
+
+			if (keyword == "")
+			{
+				$articles.removeClass('dismatch');
+			} else {
+				for (var i = 0; i < $subjects.length; i++) {
+					var $item = $($articles[i]);
+					if ( $item.find('p.message').text().toLowerCase().indexOf(keyword.toLowerCase()) == -1 )
+						$item.addClass('dismatch');
+					else
+						$item.removeClass('dismatch');
+				}
+			}
+		},
+
+
+		/**
+		 *	Initial
+		 */
+		searhBoxChangeEventInit: function() {
+			$('span.oFakeMessageSearchSpan input.searchBox#titleSearchBox').change(function() {
+				if (titleSearchBoxTimer)
+					clearTimeout(titleSearchBoxTimer);
+
+				titleSearchBoxTimer = setTimeout(self.titleSearchBoxHander, 300);
+			});
+
+			$('span.oFakeMessageSearchSpan input.searchBox#contentSearchBox').change(function() {
+				if (contentSearchBoxTimer)
+					clearTimeout(contentSearchBoxTimer);
+
+				contentSearchBoxTimer = setTimeout(self.contentSearchBoxHander, 300);
 			});
 		},
 
@@ -287,9 +377,10 @@
 				$titleBar.text(response.thread.subject);
 				for( var i = 0; i < posts.length; i++ ) {
 					var curPost = posts[i],
+						photoURL = self._contacts[curPost.sender_username].portrait_url,
 						$article = $('<article/>', {'class': 'post'}),
 						$photo = $('<span/>', {'class': 'photo'}),
-						$photoImage = $('<img/>', {'src': links[getRandomInt(0, 3)]}),
+						$photoImage = $('<img/>', {'src': (photoURL == undefined) ? 'https://www.odesk.com/images/REL58799ecf3628ba78c08344ee6f294ad9/svg-icons/user.svg' : photoURL}),
 						$messageContainer = $('<div/>', {'class': 'messageContainer'}),
 						$time = $('<h6/>', {'class': 'time'}).text(getTimeFromUNIXStamp(parseInt(curPost.created_ts), 1)),
 						messageString = '<p class="message"><strong>' + curPost.sender_username + "&nbsp;" + '</strong><br/>';
